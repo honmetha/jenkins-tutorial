@@ -1,19 +1,19 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Exercise 1') {
             steps {
-                echo 'Building..'
+                sh '''
+                    grep -o -i devops example.txt | wc -l
+                '''
             }
         }
-        stage('Test') {
+        stage('Exercise 2') {
             steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                sh '''
+                    sed -e "s/devops/hello_world/g" example.txt
+                    echo example.txt
+                '''
             }
         }
     }
