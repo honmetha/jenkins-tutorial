@@ -1,18 +1,14 @@
 pipeline {
-    agent any
-    stages {
-        stage('Exercise 1') {
-            steps {
-                sh '''
-                    ./exercise1.sh
-                '''
-            }
+    agent {
+        docker {
+            image 'node:lts-bullseye-slim' 
+            args '-p 3000:3000' 
         }
-        stage('Exercise 2') {
+    }
+    stages {
+        stage('Build') { 
             steps {
-                sh '''
-                    ./exercise2.sh
-                '''
+                sh 'npm install' 
             }
         }
     }
